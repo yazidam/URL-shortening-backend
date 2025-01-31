@@ -11,6 +11,18 @@ app.use("/", urlRoutes);
 
 const PORT = process.env.PORT || 5000;
 
+
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://url-shortening-backend.onrender.com",
+    ], // Allow frontend URLs
+    methods: "GET,POST,PUT,DELETE",
+    allowedHeaders: "Content-Type,Authorization",
+  })
+);
+
 if (process.env.NODE_ENV !== "test") {
   const connectDB = require("./config/db");
   connectDB();
